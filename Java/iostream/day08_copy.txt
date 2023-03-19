@@ -1,0 +1,99 @@
+Day8
+
+1. Therad
+(1) 정의
+    프로세스 내의 메리 블럭
+    동시에 수행 가능한 프로세스
+(2) Thread 클래스
+    멀티스레드를 구현할 수 있음
+    1)생성방법
+        Thread(), Thread(String s)
+    2) sleep(long msec) : msec동안 아무 일도 하지 않음
+       getName() : thread 이름 가져오기
+       start() : 스레드를 시작 *중요, run()을 호출
+       run() : *중요 스레드가 실행할 부분 수행
+       suspend(), resume() : 중지, 중지된 것을 다시 시작
+(3) Thread 구현 방법
+    1) Thread 클래스 상속
+       Thread의 run()을 override해서 사용
+       class MyThread extends Thread {
+            public void run() {
+                여기를 열심히 수정;
+            }
+       }
+
+       MyThread th = new MyThread();
+       th.start();
+    2) Runnable 인터페이스를 구현
+        class Mythread implements Runnable {
+            public void run() {
+                여기를 열심히 수정;
+            }
+        }
+
+        MyThread th = new MyThread();
+        Thread realThread = new Thread(th);
+        realThread.start();
+
+2. Lamda
+(1) Introduction
+    1930년대, 알론조 처치라는 수학자가 처음 제시한 함수의 수학적 표기 방법이다.
+    => 람다 대수(lamda calculus)에 기초
+    Java 8(2014)에서부터 지워(*Generic은 Java 1.5부터)
+    객체지향 프로그래밍 특징에 함수형 프로그램의 특징이 추가됨
+
+(2) 함수형 프로그래밍
+    일반적으로 프로그래밍은 함수끼리 데이터를 주고 받는 것이다.
+    데이터는 이미 확보되어있고, 함수에게 함수를 넘겨준다.
+
+    함수(메서드)는 기본적으로 어떤 클래스의 소속이어야 한다.
+    => 나보고 (함수를)정의하라고 하는 것도 성가신데, 메서드도 만들라는 거야?
+    => 심지어 일회성인데 이걸 만들어놓으라고?
+    => 아... 그럼 익명 객체로 하자
+
+(3) 익명 개체(Anonymous Instance)
+    첫 번째, 데이터 갯수는 고정되어 있으므로 선언은 할 수 있다. => 인터페이스
+    두 번째, 객체를 생성할 때(클래스는 안 만들고) 메서드를 구현하는 방식
+    => 사용자가 함수를 만들어야 하는데, 함수 정의가 너무 길다.
+    => 줄여야겠다... => 람다식
+
+    forEach 등을 활용할 때 주로 사용
+
+(4) 정리
+    어려워서 이해 못하는 사람 다수
+    무슨 데이터 타입을 사용할 것인지 사용자에게 맡기는 것이 Generic
+    무슨 함수를 쓸 것인지 사용자에게 맡기는 것이 함수형 프로그래밍
+    함수형 프로그래밍을 (   )에 넣으려니 길고 복잡하여 줄이려는 것 => 람다식
+
+(5) 기본 형태
+    (매개변수, ... ) -> { 실행문 }  // -> 화살표 실제로 사용하는 기호임
+
+    f(매개변수, ... ) {
+
+    }
+
+3. 입출력 스트링
+(1) IO : Input/Output
+(2) Stream
+    - 데이터가 돌아다니는(이동) 통로(선) : 데이터를 목적지로 IO하기 위한 방법이다.
+    - 스트림은 단방향이다.
+    - 읽기와 쓰기는 동시에 수행 불가하다.
+    - 지연 가능, 나중 부분이 먼저 수행되지는 않는다.(FIFO)
+(3) Stream의 종류
+    1) 바이트 스트림
+       바이트 단위로 전송한다.(1 byte - 8 bit)
+       이미지, 영상, 음악 등 전송이 가능
+       java.io.InputStream, java.io.OutputStream
+       byte[] 사용
+
+    2) 문자 스트림
+       Java에서는 char가 2 bytes이고 한글과 같은 2 bytes 문자는 바이트 스트림에서는 깨진다. (영어 제외 영어는 1 bytes)
+       이미지, 영상, 음악 처리 불가하다.
+       맨 뒤에 Reader, Writer가 붙는다.
+       char[] 사용
+(4) InputStream의 메서드
+    int read()
+    int read(byte[] b) : 읽은 값을 b에 써줌
+    int read(byte[] b, int offset, int len) : offset 위치부터 len만큼
+(5) OutputStream의 메서드
+    int write()
