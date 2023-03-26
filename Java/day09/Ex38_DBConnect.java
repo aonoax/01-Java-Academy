@@ -1,9 +1,9 @@
-package day08.db;
+package day09.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class Ex28_DBConnect {
+public class Ex38_DBConnect {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
