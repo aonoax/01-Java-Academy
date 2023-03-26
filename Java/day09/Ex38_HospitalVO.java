@@ -1,4 +1,4 @@
-package day08.db;
+package day09.db;
 
 public class Ex38_HospitalVO {
 	String hptl_nm;
